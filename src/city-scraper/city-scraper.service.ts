@@ -31,9 +31,11 @@ export class CityScraperService {
     private async browser(): Promise<Browser> {
         const width=1800, height=1600;
         return await puppeteer.launch({
-            headless: this.configService.get<boolean>('PUPPETTEER_HEADLESS', true),
-            slowMo: this.configService.get<number>('PUPPETTEER_SLOW_MO_MS', null),
+            headless: this.configService.get<boolean>('puppeteer.headless', true),
+            slowMo: this.configService.get<number>('puppeteer.slowMoMs', null),
             defaultViewport: {width, height},
+            executablePath: '/usr/bin/google-chrome',
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
     }
 
@@ -45,9 +47,8 @@ export class CityScraperService {
         return dropdownList;
     }
 
-
     async scrape() {
-        const endpoint: string = this.configService.get<string>('PUPPETTEER_CITY_SCRAPER_ENDPOINT');
+        const endpoint: string = this.configService.get<string>('puppeteer.scrapingEndpoint');
 
         this.logger.log(`Start scraping ${endpoint}`);
         const browser = await this.browser();
@@ -92,6 +93,7 @@ export class CityScraperService {
 
         } catch (error) {
             this.logger.error(error);
+            // Notify
         } finally {
             browser.close();
         }

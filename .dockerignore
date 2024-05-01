@@ -1,0 +1,6 @@
+.gitignore
+.git
+.env
+README.md
+docker-compose.yaml
+Dockerfile*
