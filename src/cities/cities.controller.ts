@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { FilterQuery } from 'mongoose';
 import { City } from './entities/city.entity';
@@ -6,6 +6,11 @@ import { City } from './entities/city.entity';
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
+
+  @Get('scrape')
+  scrape() {
+    return this.citiesService.scrape();
+  }
 
   @Get()
   findAll() {
@@ -22,8 +27,17 @@ export class CitiesController {
   }
 
   @Get('find/page/:page/limit/:limit')
-  async findPaginated(@Query() query: FilterQuery<City>, @Param('page') page: number, @Param('limit') limit: number) {
-    return await this.citiesService.find(query, page, limit);
+  async findPaginated(
+    @Query() query: FilterQuery<City>,
+    @Param('page') page: number,
+    @Param('limit') limit: number,
+  ) {
+    const data = await this.citiesService.find(query, page, limit);
+    return {
+      data,
+      next: page + 1,
+      prev: page - 1,
+      limit: limit,
+    };
   }
-
 }
