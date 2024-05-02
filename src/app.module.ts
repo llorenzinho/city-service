@@ -5,6 +5,7 @@ import { CityScraperModule } from './city-scraper/city-scraper.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CitiesModule } from './cities/cities.module';
 
 @Module({
   imports: [
@@ -13,7 +14,6 @@ import { MongooseModule } from '@nestjs/mongoose';
       cache: false,
       load: [configuration],
     }),
-    CityScraperModule,
     MongooseModule.forRootAsync(
       {
         imports: [ConfigModule],
@@ -27,6 +27,8 @@ import { MongooseModule } from '@nestjs/mongoose';
         inject: [ConfigService],
       }
     ),
+    CityScraperModule,
+    CitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
