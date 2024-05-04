@@ -26,7 +26,7 @@ export class CitiesService {
   }
 
   find(
-    query: FilterQuery<City>,
+    query?: FilterQuery<City>,
     page?: number,
     limit?: number,
   ): Promise<City[]> {
