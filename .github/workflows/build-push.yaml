@@ -5,8 +5,9 @@ on:
     types: [completed]
     branches:
     - 'main'
-  tags:        
-    - '*'
+  push:
+    tags:        
+      - '*'
 
 jobs:
   deploy:
