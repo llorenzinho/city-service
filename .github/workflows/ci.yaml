@@ -1,0 +1,35 @@
+name: ci
+on:
+  push:
+    branches:
+    - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version:
+        - 22.x
+        - 21.x
+
+    steps:
+      - name: Copy repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-locks
+
+      - name: Lint code
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test
