@@ -13,6 +13,7 @@ export class CitiesService {
   ) {}
 
   async scrape() {
+    if (CityScraperService.is_running) return { message: 'scraping job already running' };
     this.cityScraper.scrape();
     return { message: 'scraping started. Will run in background' };
   }
