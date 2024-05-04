@@ -35,8 +35,9 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install google-chrome-stable -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /app/dist .
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package.json .
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/package.json /app/package.json
+COPY --from=build /app/tsconfig.json /app/tsconfig.json
 
 CMD ["node", "/app/dist/main.js"]
