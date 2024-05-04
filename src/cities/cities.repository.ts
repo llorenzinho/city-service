@@ -29,7 +29,7 @@ export class CitiesRepository {
   }
 
   find(
-    query: FilterQuery<City>,
+    query?: FilterQuery<City>,
     page?: number,
     limit?: number,
   ): Promise<City[]> {
