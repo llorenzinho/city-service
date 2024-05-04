@@ -29,6 +29,7 @@ function getDropdownElementIdSelector(selector: DropdownIdSelectors): string {
 @Injectable()
 export class CityScraperService {
   private readonly logger = new Logger('CityScraperService');
+  static is_running: boolean = false;
 
   constructor(
     private configService: ConfigService,
@@ -69,6 +70,8 @@ export class CityScraperService {
     const browser = await this.browser();
     const page = await browser.newPage();
     try {
+      CityScraperService.is_running = true;
+
       await page.goto(endpoint, {
         waitUntil: 'networkidle0',
       });
@@ -173,6 +176,7 @@ export class CityScraperService {
       // Notify
     } finally {
       browser.close();
+      CityScraperService.is_running = false;
     }
   }
 }
