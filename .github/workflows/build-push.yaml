@@ -1,13 +1,12 @@
 name: build-push
 on:  
-  push:
-    workflow_run:
-      workflows: ['ci']
-      types: [completed]
-      branches:
-      - 'main'
-    tags:        
-      - '*'
+  workflow_run:
+    workflows: ['ci']
+    types: [completed]
+    branches:
+    - 'main'
+  tags:        
+    - '*'
 
 jobs:
   deploy:
