@@ -1221,7 +1221,7 @@
       "type": "row"
     }
   ],
-  "refresh": "30s",
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -1320,6 +1320,6 @@
   "timezone": "browser",
   "title": "Italy Cities",
   "uid": "ddkm4hx60jvuod",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }
