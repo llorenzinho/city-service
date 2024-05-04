@@ -1,0 +1,24 @@
+apiVersion: 1
+datasources:
+  - id: 1
+    uid: "bdklvdha13jswe"
+    orgId: 1
+    name: "yesoreyeram-infinity-datasource"
+    type: "yesoreyeram-infinity-datasource"
+    url: ""
+    basicAuth: false
+    basicAuthUser: ""
+    isDefault: false
+    jsonData:
+      global_queries: []
+    readOnly: false
+  - id: 2
+    name: Environment
+    type: volkovlabs-env-datasource
+    access: proxy
+    isDefault: true
+    orgId: 1
+    version: 1
+    editable: true
+    jsonData:
+      filter: API_
