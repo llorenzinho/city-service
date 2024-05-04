@@ -9,7 +9,6 @@ services:
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards/cities.json:/var/lib/grafana/dashboards/cities.json
-      # - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
     restart: unless-stopped
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -17,16 +16,14 @@ services:
       - GF_AUTH_ORG_ROLE=Admin
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource,https://github.com/VolkovLabs/volkovlabs-env-datasource/releases/download/v3.1.0/volkovlabs-env-datasource-3.1.0.zip;volkovlabs-env-datasource
-      # - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/cities.json
       - API_URL=http://app:5000
+      # - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/cities.json
 
   mongo:
     image: mongo:7.0.9
     restart: always
     logging:
       driver: none
-    ports:
-      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -42,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
+      target: prod
     container_name: app
     command: yarn start:dev
     environment:
@@ -57,9 +54,7 @@ services:
       - '5000:5000'
     depends_on:
       - mongo
-    volumes:
-      - .:/app
-      - /app/node_modules
+      - grafana
 
 volumes:
   MONGO_DATA:
