@@ -35,9 +35,27 @@ RUN apt-get update && apt-get install gnupg wget -y && \
   apt-get install google-chrome-stable -y --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /app/dist /app/dist
+COPY --from=build /app/dist/src /app/dist
 COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/package.json /app/package.json
-COPY --from=build /app/tsconfig.json /app/tsconfig.json
 
 CMD ["node", "/app/dist/main.js"]
+
+# UI GRAFANA ENVIRONMENT
+FROM grafana/grafana:10.4.2 as ui
+
+COPY ./grafana/provisioning /etc/grafana/provisioning
+COPY ./grafana/dashboards/cities.json /var/lib/grafana/dashboards/cities.json
+
+ENV GF_AUTH_ANONYMOUS_ENABLED=true
+ENV GF_AUTH_DISABLE_LOGIN_FORM=true
+ENV GF_AUTH_ORG_ROLE=Admin
+ENV GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+
+RUN grafana cli plugins install yesoreyeram-infinity-datasource && \
+  grafana cli --pluginUrl https://github.com/VolkovLabs/volkovlabs-env-datasource/releases/download/v3.1.0/volkovlabs-env-datasource-3.1.0.zip plugins install volkovlabs-env-datasource
+
+# Remember to override the API_URL based on your needs
+ENV API_URL=http://app:5000
+
+EXPOSE 3000
+ENTRYPOINT ["/run.sh"]
