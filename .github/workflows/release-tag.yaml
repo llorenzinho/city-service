@@ -7,8 +7,16 @@ on:
         required: true
 
 jobs:
+  print-tag:
+    name: Print Tag
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Print Tag
+      run: echo "Creating tag ${{ github.event.inputs.tag }}"
+
   create-tag:
-    name: Create Tag
+    name: YQ example!
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +24,7 @@ jobs:
       with:
         ref: 'main'
     - uses: chrisdickinson/setup-yq@latest
-    - name: Show folks how to run YQ:
+    - name:
       run: |
         yq -y ".services.grafana.image = \"lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}\"" compose-app.yaml
         yq -y ".services.app.image = \"lorenzodagostino/cityservice:${{ github.event.inputs.tag }}\"" compose-app.yaml
