@@ -1,0 +1,42 @@
+name: Create Tag Release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v1.0.0)'
+        required: true
+
+jobs:
+  print-tag:
+    name: Print Tag
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Print Tag
+      run: echo "Creating tag ${{ github.event.inputs.tag }}"
+
+  create-tag:
+    name: YQ example!
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: 'main'
+    - uses: chrisdickinson/setup-yq@latest
+    - name:
+      run: |
+        yq -y ".services.grafana.image = \"lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}\"" compose-app.yaml
+        yq -y ".services.app.image = \"lorenzodagostino/cityservice:${{ github.event.inputs.tag }}\"" compose-app.yaml
+    - name: Commit changes
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add . && git commit -m "Update compose-app.yaml"
+    - uses: joutvhu/create-tag@v1
+      with:
+        tag_name: ${{ github.event.inputs.tag }}
+        message: created tag ${{ github.event.inputs.tag }}
+        on_tag_exists: error
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
