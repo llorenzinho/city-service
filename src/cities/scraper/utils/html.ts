@@ -2,6 +2,7 @@ import { Page } from 'puppeteer';
 import {
   DropdownIdSelectors,
   LiElement,
+  getDropdownButtonIdSelector,
   getDropdownElementIdSelector,
 } from './typeUtils';
 
@@ -18,9 +19,32 @@ export async function getLiElements(
 ): Promise<LiElement[]> {
   const dropdown = await page.$(getDropdownElementIdSelector(selector));
   const elems = await dropdown.$$eval('li', (el) =>
-    el.map((li, index) => ({ id: li.id, name: li.textContent, index: index })),
+    el.map((li, index) => ({
+      id: li.id,
+      name: li.textContent,
+      index: index + 1,
+    })),
   );
   return elems.filter(
     (el) => el.id !== '' && el.id !== null && el.id !== undefined,
   );
+}
+
+export async function clickLI(
+  page: Page,
+  dropDownSelector: DropdownIdSelectors,
+  ...selectors: string[]
+) {
+  const sel = [
+    getDropdownElementIdSelector(dropDownSelector),
+    ...selectors,
+  ].join(' ');
+  await page.click(sel);
+}
+
+export async function clickBTN(
+  page: Page,
+  dropDownSelector: DropdownIdSelectors,
+) {
+  await page.click(getDropdownButtonIdSelector(dropDownSelector));
 }

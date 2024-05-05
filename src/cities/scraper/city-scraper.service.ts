@@ -4,13 +4,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import puppeteer, { Browser } from 'puppeteer';
 import { City } from '../entities/city.entity';
-import {
-  DropdownIdSelectors,
-  getDropdownButtonIdSelector,
-  getDropdownElementIdSelector,
-} from './utils/typeUtils';
+import { DropdownIdSelectors } from './utils/typeUtils';
 import { elementToCity } from './utils/parsing';
-import { getLiElements } from './utils/html';
+import { clickBTN, clickLI, getLiElements } from './utils/html';
 
 @Injectable()
 export class CityScraperService {
@@ -47,6 +43,7 @@ export class CityScraperService {
    * @return {Promise<void>} Promise that resolves once scraping and processing are complete.
    */
   async scrape(): Promise<void> {
+    const begin = performance.now();
     const endpoint: string = this.configService.get<string>(
       'puppeteer.scrapingEndpoint',
     );
@@ -54,15 +51,13 @@ export class CityScraperService {
     const browser = await this.browser();
     const page = await browser.newPage();
 
-    const begin = performance.now();
-
     CityScraperService.is_running = true;
 
     await page.goto(endpoint, {
       waitUntil: 'networkidle0',
     });
 
-    await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.REGION)); // open region dropdown
+    await clickBTN(page, DropdownIdSelectors.REGION); // open region dropdown
 
     const regions = await getLiElements(page, DropdownIdSelectors.REGION); // get region list
     this.logger.debug(regions);
@@ -73,13 +68,13 @@ export class CityScraperService {
     for (const region of regions) {
       try {
         this.logger.debug(`Scraping region ${region.name}`);
-        await page.click(
-          `${getDropdownElementIdSelector(DropdownIdSelectors.REGION)} li:nth-child(${region.index + 1})`,
+        await clickLI(
+          page,
+          DropdownIdSelectors.REGION,
+          `li:nth-child(${region.index})`,
         ); // select element i
 
-        await page.click(
-          getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE),
-        ); // open province dropdown
+        await clickBTN(page, DropdownIdSelectors.PROVINCE); // open province dropdown
         const provinces = await getLiElements(
           page,
           DropdownIdSelectors.PROVINCE,
@@ -89,13 +84,13 @@ export class CityScraperService {
         // Iterate over each province element
         for (const province of provinces) {
           this.logger.debug(`\tScraping province ${province.name}`);
-          await page.click(
-            `${getDropdownElementIdSelector(DropdownIdSelectors.PROVINCE)} li:nth-child(${province.index + 1})`,
+          await clickLI(
+            page,
+            DropdownIdSelectors.PROVINCE,
+            `li:nth-child(${province.index})`,
           ); // select element i
 
-          await page.click(
-            getDropdownButtonIdSelector(DropdownIdSelectors.CITY),
-          ); // open province dropdown
+          await clickBTN(page, DropdownIdSelectors.CITY); // open province dropdown
           const cities_ = await getLiElements(page, DropdownIdSelectors.CITY); // get province list
 
           this.logger.debug(`\tFound ${cities_.length} elements in city list`);
@@ -110,17 +105,13 @@ export class CityScraperService {
           });
           await this.cities.create(cities);
 
-          await page.click(
-            getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE),
-          ); // open province dropdown
+          await clickBTN(page, DropdownIdSelectors.PROVINCE); // open province dropdown
         }
       } catch (error) {
         console.error(error);
         continue;
       } finally {
-        await page.click(
-          getDropdownButtonIdSelector(DropdownIdSelectors.REGION),
-        );
+        await clickBTN(page, DropdownIdSelectors.REGION);
       }
     }
 
