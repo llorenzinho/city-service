@@ -2,17 +2,15 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import puppeteer, { Browser, ElementHandle } from 'puppeteer';
+import puppeteer, { Browser } from 'puppeteer';
 import { City } from '../entities/city.entity';
 import {
-  CityLiElement,
   DropdownIdSelectors,
-  LiElement,
   getDropdownButtonIdSelector,
   getDropdownElementIdSelector,
 } from './utils/typeUtils';
-import { getCities, getIds, getElementById, getListElement } from './utils/html';
-import { parseCities } from './utils/parsing';
+import { elementToCity } from './utils/parsing';
+import { getLiElements } from './utils/html';
 
 @Injectable()
 export class CityScraperService {
@@ -26,7 +24,7 @@ export class CityScraperService {
 
   /**
    * Gets the browser instance with some pre configured settings.
-   * 
+   *
    * @return {Promise<Browser>} Promise that resolves with the browser instance.
    */
   private async browser(): Promise<Browser> {
@@ -40,7 +38,6 @@ export class CityScraperService {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
   }
-
 
   /**
    * Scrapes data from the specified endpoint, processes region and province data,
@@ -66,75 +63,64 @@ export class CityScraperService {
     });
 
     await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.REGION)); // open region dropdown
-    const regionList = await getListElement(DropdownIdSelectors.REGION, page); // get region list (need number of regions)
-    const numRegions = regionList.length;
 
-    var ids_ = regionList.map(async (el) => el.evaluate((el) => el.id));
-    var names_ = regionList.map(async (el) => el.evaluate((el) => el.textContent));
-    var rIds: string[] = await Promise.all(ids_);
-    var rNames: string[] = await Promise.all(names_);
+    const regions = await getLiElements(page, DropdownIdSelectors.REGION); // get region list
+    this.logger.debug(regions);
 
-    var numNonDegradedElements = rIds.filter((id) => (id !== '' && id !== null && id !== undefined)).length;
-
-    var startingIndex = numRegions - numNonDegradedElements;
-
-    this.logger.debug(`Found ${numNonDegradedElements} elements in region list`);
+    this.logger.debug(`Found ${regions.length} elements in region list`);
 
     // Iterate over each region element
-    for (let i = startingIndex; i < numRegions; i++) {
+    for (const region of regions) {
       try {
-        this.logger.debug(`Scraping region ${rNames[i]}`);
-        await page.click(`${getDropdownElementIdSelector(DropdownIdSelectors.REGION)} li:nth-child(${i+1})`); // select element i
+        this.logger.debug(`Scraping region ${region.name}`);
+        await page.click(
+          `${getDropdownElementIdSelector(DropdownIdSelectors.REGION)} li:nth-child(${region.index + 1})`,
+        ); // select element i
 
-        await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE)); // open province dropdown
-        const provinceList = await getListElement(DropdownIdSelectors.PROVINCE, page); // get province list (need number of provinces)
-        const numProvinces = provinceList.length;
-        this.logger.debug(`Found ${numProvinces} provinces in region ${rNames[i]}:`);
-
-        ids_ = provinceList.map(async (el) => el.evaluate((el) => el.id));
-        names_ = provinceList.map(async (el) => el.evaluate((el) => el.textContent));
-        var pNames: string[] = await Promise.all(names_);
-        var pIds: string[] = await Promise.all(ids_);
-
-        numNonDegradedElements = pIds.filter((id) => (id !== '' && id !== null && id !== undefined)).length;
-
-        startingIndex = numProvinces - numNonDegradedElements;
+        await page.click(
+          getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE),
+        ); // open province dropdown
+        const provinces = await getLiElements(
+          page,
+          DropdownIdSelectors.PROVINCE,
+        ); // get province list
+        this.logger.debug(`Found ${provinces.length} elements in region list`);
 
         // Iterate over each province element
-        for (let j = startingIndex; j < numProvinces; j++) {
-          this.logger.debug(`\tScraping province ${pNames[j]}`);
-          await page.click(`${getDropdownElementIdSelector(DropdownIdSelectors.PROVINCE)} li:nth-child(${j+1})`); // select element i
+        for (const province of provinces) {
+          this.logger.debug(`\tScraping province ${province.name}`);
+          await page.click(
+            `${getDropdownElementIdSelector(DropdownIdSelectors.PROVINCE)} li:nth-child(${province.index + 1})`,
+          ); // select element i
 
-          await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.CITY)); // open province dropdown
-          const cityList = await getListElement(DropdownIdSelectors.CITY, page); // get province list (need number of provinces)
-          const numCities = cityList.length;
-          
-          this.logger.debug(`\tFound ${numCities} cities in province ${pNames[j]}`);
+          await page.click(
+            getDropdownButtonIdSelector(DropdownIdSelectors.CITY),
+          ); // open province dropdown
+          const cities_ = await getLiElements(page, DropdownIdSelectors.CITY); // get province list
 
-          ids_ = cityList.map(async (el) => el.evaluate((el) => el.id));
-          names_ = cityList.map(async (el) => el.evaluate((el) => el.textContent));
-          var cNames: string[] = (await Promise.all(names_)).filter((name) => (name !== '' && name !== null && name !== undefined));
-          var cIds: string[] = (await Promise.all(ids_)).filter((id) => (id !== '' && id !== null && id !== undefined));
-          
-          const cities_ : CityLiElement[] = [];
+          this.logger.debug(`\tFound ${cities_.length} elements in city list`);
 
-          for (let k = 0; k < cIds.length; k++) {
-            cities_.push({ id: cIds[k], name: cNames[k] });
-          }
+          const cities: City[] = cities_.map((c) =>
+            elementToCity(c, region.name, province.name, province.id),
+          );
 
-          const cities: City[] = parseCities(cities_, rNames[i], pNames[j], pIds[j]);
-
-          await this.cities.deleteMany({ region: rNames[i], province: pNames[j] });
+          await this.cities.deleteMany({
+            region: region.name,
+            province: province.name,
+          });
           await this.cities.create(cities);
 
-          await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE)); // open province dropdown
+          await page.click(
+            getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE),
+          ); // open province dropdown
         }
-
       } catch (error) {
         console.error(error);
-        continue
+        continue;
       } finally {
-        await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.REGION))
+        await page.click(
+          getDropdownButtonIdSelector(DropdownIdSelectors.REGION),
+        );
       }
     }
 
@@ -142,6 +128,5 @@ export class CityScraperService {
     const end = performance.now();
     this.logger.log(`Finish scraping ${endpoint} in ${end - begin} ms`);
     await browser.close();
-    
   }
 }

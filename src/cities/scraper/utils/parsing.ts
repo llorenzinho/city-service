@@ -1,5 +1,5 @@
 import { City } from 'src/cities/entities/city.entity';
-import { CityLiElement } from './typeUtils';
+import { LiElement } from './typeUtils';
 
 /**
  * Converts a CityLiElement object to a City object.
@@ -11,7 +11,7 @@ import { CityLiElement } from './typeUtils';
  * @return {City} The converted City object.
  */
 export function elementToCity(
-  liObject: CityLiElement,
+  liObject: LiElement,
   regionName: string,
   provinceName: string,
   provinceCode: string,
@@ -36,29 +36,4 @@ export function elementToCity(
     provinceCode: provinceCode,
     region: regionName,
   };
-}
-
-/**
- * Parses a list of CityLiElement objects and returns an array of City objects.
- *
- * @param {CityLiElement[]} listLiObjects - The list of CityLiElement objects to parse.
- * @param {string} region - The region of the cities.
- * @param {string} province - The province of the cities.
- * @param {string} provinceCode - The code of the province.
- * @return {City[]} An array of City objects.
- */
-export function parseCities(
-  listLiObjects: CityLiElement[],
-  region: string,
-  province: string,
-  provinceCode: string,
-): City[] {
-  return listLiObjects
-    .filter(
-      (liObject) =>
-        liObject.id !== '' && liObject.id !== null && liObject.id !== undefined,
-    )
-    .map((liObject) => {
-      return elementToCity(liObject, region, province, provinceCode);
-    });
 }

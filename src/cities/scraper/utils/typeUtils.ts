@@ -1,19 +1,13 @@
-import { ElementHandle } from "puppeteer";
-
-export type CityLiElement = {
+export type LiElement = {
   id: string;
   name: string;
+  index: number;
 };
 
 export enum DropdownIdSelectors {
   REGION = 'reg',
   PROVINCE = 'prov',
   CITY = 'com',
-}
-
-export type LiElement = {
-  content: string;
-  el: ElementHandle<Element>;
 }
 
 /**
