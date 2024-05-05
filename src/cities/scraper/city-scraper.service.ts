@@ -124,7 +124,7 @@ export class CityScraperService {
 
           const cities: City[] = parseCities(cities_, rNames[i], pNames[j], pIds[j]);
 
-          await this.cities.deleteMany(cities);
+          await this.cities.deleteMany({ region: rNames[i], province: pNames[j] });
           await this.cities.create(cities);
 
           await page.click(getDropdownButtonIdSelector(DropdownIdSelectors.PROVINCE)); // open province dropdown
