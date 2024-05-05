@@ -22,7 +22,7 @@ jobs:
         git add .
         git commit -m "Update compose-app.yaml"
         git push origin ${{ github.ref_name }}
-    - uses: llorenzinho/city-service/.github/workflows/build-push-images.yaml
+    - uses: llorenzinho/city-service/.github/actions/build-push@main
       with:
         ref_name: ${{ github.ref_name }}
       secrets: inherit
