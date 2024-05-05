@@ -11,24 +11,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        ref: 'main'
     - uses: chrisdickinson/setup-yq@latest
       with:
         yq-version: v4.43.1
         yq-url: https://github.com/mikefarah/yq/releases/download/{version}/yq_{platform}_{arch}
     - name:
       run: |
-        git checkout -b ${{ github.ref_name }}
         yq e -i '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.ref_name }}"' compose-app.yaml
         yq e -i '.services.app.image = "lorenzodagostino/cityservice:${{ github.ref_name }}"' compose-app.yaml
         git add .
         git commit -m "Update compose-app.yaml"
         git push origin ${{ github.ref_name }}
     - uses: .github/workflows/build-push-images.yaml
-        with:
-          ref_name: ${{ github.ref_name }}
-        secrets: inherit
+      with:
+        ref_name: ${{ github.ref_name }}
+      secrets: inherit
 
     
 

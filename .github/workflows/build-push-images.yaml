@@ -1,7 +1,5 @@
 name: build-push
 on:  
-  name: Callable Workflow
-
   workflow_call:
     inputs:
       ref_name: 
