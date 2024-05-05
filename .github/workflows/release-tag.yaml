@@ -41,6 +41,5 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        git checkout ${{ github.event.inputs.tag }}
         git tag ${{ github.event.inputs.tag }}
         git push https://llorenzinho:${GH_TOKEN}@github.com/llorenzinho/city-service.git ${{ github.event.inputs.tag }}
