@@ -26,7 +26,7 @@ jobs:
   build-tag:
     needs:
     - enhance-tag
-    uses: llorenzinho/city-service/.github/actions/build-push@main
+    uses: ./.github/workflows/build-publish-images.yaml
     with:
       ref_name: ${{ github.ref_name }}
     secrets: inherit
