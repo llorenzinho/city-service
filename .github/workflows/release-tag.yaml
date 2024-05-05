@@ -7,16 +7,8 @@ on:
         required: true
 
 jobs:
-  print-tag:
-    name: Print Tag
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Print Tag
-      run: echo "Creating tag ${{ github.event.inputs.tag }}"
-
   create-tag:
-    name: YQ example!
+    name: Create Tag
     runs-on: ubuntu-latest
 
     steps:
