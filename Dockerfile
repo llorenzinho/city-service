@@ -1,5 +1,5 @@
 # DEV ENVIRONMENT
-FROM node:22.1-bullseye-slim as dev
+FROM node:22.1 as dev
 
 RUN apt-get update && apt-get install gnupg wget -y && \
   wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
