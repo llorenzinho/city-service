@@ -20,7 +20,11 @@ This section is on **How to run the app**
 
 Install dependecies with `yarn install` (needed since the node_modules are synced from local dir).
 
-Now run `docker compose -f docker-compose.yaml up` and wait for the service to be up and running.
+Now run and wait for the service to be up and running:
+
+```bash
+docker compose -f docker-compose.yaml up --build`
+```
 
 You can now visit [mongo-express](http://127.0.0.1:8081)
 
@@ -51,3 +55,9 @@ After a while you will be able to visit the [dashboard](http://localhost:3000/d/
 If it is the first time you run the app, your database is not populated yet and you will not see any data. However the dashboard triggers the scrapeing job and you will be able to see data by refreshing the page (*Note that auto refresh is disabled*).
 
 At the top of the dashboard you can apply filters to the query.
+
+# API DOC
+
+Swagger doc is available at `docs/api` endpoint. Run the app and visit http://localhost:5000/docs/cities to see it:
+
+![Swagger UI](./imgs/swagger.png)
