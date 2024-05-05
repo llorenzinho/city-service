@@ -18,16 +18,18 @@ function setupDoc(app: INestApplication) {
 function getLogLevel(): NestApplicationOptions {
   const logLevel: string = process.env.LOG_LEVEL || 'production';
   return {
-    logger: logLevel === 'development' ? ['log', 'debug', 'error', 'verbose', 'warn'] : ['error', 'warn', 'log'],
+    logger:
+      logLevel === 'development'
+        ? ['log', 'debug', 'error', 'verbose', 'warn']
+        : ['error', 'warn', 'log'],
   };
 }
 
 async function bootstrap() {
-  const options:NestApplicationOptions = {...getLogLevel()};
+  const options: NestApplicationOptions = { ...getLogLevel() };
   const app: INestApplication = await NestFactory.create(AppModule, options);
   const config: ConfigService = app.get(ConfigService);
 
-  console.log('ciao')
   setupDoc(app);
 
   const port: number = config.get<number>('app.port');
