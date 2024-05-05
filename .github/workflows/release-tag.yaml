@@ -29,6 +29,7 @@ jobs:
         yq-url: https://github.com/mikefarah/yq/releases/download/{version}/yq_{platform}_{arch}
     - name:
       run: |
+        git checkout -b ${{ github.event.inputs.tag }}
         yq e -i '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}"' compose-app.yaml
         yq e -i '.services.app.image = "lorenzodagostino/cityservice:${{ github.event.inputs.tag }}"' compose-app.yaml
     - name: Commit changes
@@ -40,5 +41,6 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
+        git checkout ${{ github.event.inputs.tag }}
         git tag ${{ github.event.inputs.tag }}
         git push https://llorenzinho:${GH_TOKEN}@github.com/llorenzinho/city-service.git ${{ github.event.inputs.tag }}
