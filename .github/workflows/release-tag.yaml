@@ -24,7 +24,7 @@ jobs:
         git checkout -b release/${{ github.ref_name }}
         git add .
         git commit -m "Update compose-app.yaml"
-        git push origin release/${{ github.ref_name }}
+        git push -u origin release/${{ github.ref_name }}
   
   build-tag:
     needs:
