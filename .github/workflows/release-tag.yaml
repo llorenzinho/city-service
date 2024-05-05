@@ -26,7 +26,7 @@ jobs:
   build-tag:
     needs:
     - enhance-tag
-    uses: ./.github/workflows/build-publish-images.yaml
+    uses: ./.github/workflows/build-push-images.yaml
     with:
       ref_name: ${{ github.ref_name }}
     secrets: inherit
