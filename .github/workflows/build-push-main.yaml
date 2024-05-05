@@ -1,0 +1,17 @@
+name: build-push-main
+on:  
+  workflow_run:
+    workflows: ['ci']
+    types: [completed]
+    branches:
+    - 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: .github/workflows/build-push-images.yaml
+        with:
+          ref_name: latest
+        secrets: inherit

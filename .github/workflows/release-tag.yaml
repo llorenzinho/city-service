@@ -1,43 +1,34 @@
 name: Create Tag Release
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Release tag (e.g. v1.0.0)'
-        required: true
+  push:
+    tags:        
+      - '*'
 
 jobs:
-  print-tag:
-    name: Print Tag
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Print Tag
-      run: echo "Creating tag ${{ github.event.inputs.tag }}"
-
-  create-tag:
+  build-tag:
     name: Create tag
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
       with:
         ref: 'main'
-        token: ${{ secrets.PAT }}
     - uses: chrisdickinson/setup-yq@latest
       with:
         yq-version: v4.43.1
         yq-url: https://github.com/mikefarah/yq/releases/download/{version}/yq_{platform}_{arch}
     - name:
       run: |
-        git checkout -b ${{ github.event.inputs.tag }}
-        yq e -i '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}"' compose-app.yaml
-        yq e -i '.services.app.image = "lorenzodagostino/cityservice:${{ github.event.inputs.tag }}"' compose-app.yaml
-    - name: Commit changes
-      run: |
+        git checkout -b ${{ github.ref_name }}
+        yq e -i '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.ref_name }}"' compose-app.yaml
+        yq e -i '.services.app.image = "lorenzodagostino/cityservice:${{ github.ref_name }}"' compose-app.yaml
         git add .
         git commit -m "Update compose-app.yaml"
-    - name: Create tag
-      run: |
-        git tag ${{ github.event.inputs.tag }}
-        git push origin tag ${{ github.event.inputs.tag }}
+        git push origin ${{ github.ref_name }}
+    - uses: .github/workflows/build-push-images.yaml
+        with:
+          ref_name: ${{ github.ref_name }}
+        secrets: inherit
+
+    
+

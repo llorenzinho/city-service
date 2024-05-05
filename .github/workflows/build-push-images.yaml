@@ -1,13 +1,19 @@
 name: build-push
 on:  
-  workflow_run:
-    workflows: ['ci']
-    types: [completed]
-    branches:
-    - 'main'
-  push:
-    tags:        
-      - '*'
+  name: Callable Workflow
+
+  workflow_call:
+    inputs:
+      ref_name: 
+        description: 'Name for docker tag'
+        required: true
+        type: 'string'
+
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
 
 jobs:
   deploy:
@@ -32,7 +38,7 @@ jobs:
           context: .
           push: true
           target: prod
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cityservice:${{ github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cityservice:${{ inputs.ref_name }}
       
       - name: Build and push FE
         uses: docker/build-push-action@v5
@@ -40,4 +46,4 @@ jobs:
           context: .
           push: true
           target: ui
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ui-cities:${{ github.ref_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ui-cities:${{ inputs.ref_name }}
