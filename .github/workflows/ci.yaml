@@ -12,7 +12,7 @@ on:
         - tsconfig.build.json
         - .eslintrc.js
         - .prettierrc
-        - .github/workflows/ci.yaml
+        - .github/workflows
   pull_request:
     branches:
     - '*'

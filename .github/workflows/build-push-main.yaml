@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: .github/workflows/build-push-images.yaml
+      - uses: llorenzinho/city-service/.github/workflows/build-push-images.yaml
         with:
           ref_name: latest
         secrets: inherit
