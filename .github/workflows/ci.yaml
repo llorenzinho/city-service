@@ -3,6 +3,16 @@ on:
   push:
     branches:
     - '*'
+    paths:
+        - src/**
+        - test/**
+        - yarn.lock
+        - package.json
+        - tsconfig.json
+        - tsconfig.build.json
+        - .eslintrc.js
+        - .prettierrc
+        - .github/workflows/ci.yaml
   pull_request:
     branches:
     - '*'
