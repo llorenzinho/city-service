@@ -16,7 +16,7 @@ function setupDoc(app: INestApplication) {
 }
 
 function getLogLevel(): NestApplicationOptions {
-  const logLevel: string = process.env.LOG_LEVEL || 'development';
+  const logLevel: string = process.env.LOG_LEVEL || 'production';
   return {
     logger: logLevel === 'development' ? ['log', 'debug', 'error', 'verbose', 'warn'] : ['error', 'warn', 'log'],
   };
