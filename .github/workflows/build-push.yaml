@@ -26,10 +26,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push BE
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           target: prod
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/cityservice:${{ github.ref_name }}
+      
+      - name: Build and push FE
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          target: ui
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ui-cities:${{ github.ref_name }}
