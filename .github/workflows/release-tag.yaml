@@ -24,6 +24,9 @@ jobs:
       with:
         ref: 'main'
     - uses: chrisdickinson/setup-yq@latest
+      with:
+        yq-version: 4.43.1
+        yq-url: https://github.com/mikefarah/yq/releases/download/{version}/yq_{platform}_{arch}
     - name:
       run: |
         yq e -i '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}"' compose-app.yaml
