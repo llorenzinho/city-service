@@ -43,4 +43,4 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         git tag ${{ github.event.inputs.tag }}
-        git push https://llorenzinho:${GH_TOKEN}@github.com/llorenzinho/city-service.git tag ${{ github.event.inputs.tag }}
+        git push origin tag ${{ github.event.inputs.tag }}
