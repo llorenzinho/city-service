@@ -2,17 +2,13 @@ version: '3.5'
 
 services:
   grafana:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: ui
+    image: lorenzodagostino/ui-cities:main
     container_name: grafana
     ports:
       - 3000:3000
     restart: unless-stopped
     environment:
       - API_URL=http://app:5000
-      # - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/cities.json
 
   mongo:
     image: mongo:7.0.9
@@ -31,10 +27,7 @@ services:
         target: /data/configdb
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: prod
+    image: lorenzodagostino/cityservice:main
     container_name: app
     environment:
     - PORT=5000
