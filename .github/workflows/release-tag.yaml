@@ -5,7 +5,7 @@ on:
       - '*'
 
 jobs:
-  build-tag:
+  enhance-tag:
     name: Create tag
     runs-on: ubuntu-22.04
 
@@ -22,10 +22,14 @@ jobs:
         git add .
         git commit -m "Update compose-app.yaml"
         git push origin ${{ github.ref_name }}
-    - uses: llorenzinho/city-service/.github/actions/build-push@main
-      with:
-        ref_name: ${{ github.ref_name }}
-      secrets: inherit
+  
+  build-tag:
+    needs:
+    - enhance-tag
+    uses: llorenzinho/city-service/.github/actions/build-push@main
+    with:
+      ref_name: ${{ github.ref_name }}
+    secrets: inherit
 
     
 
