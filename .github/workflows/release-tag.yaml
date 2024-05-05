@@ -35,8 +35,6 @@ jobs:
         yq e -i '.services.app.image = "lorenzodagostino/cityservice:${{ github.event.inputs.tag }}"' compose-app.yaml
     - name: Commit changes
       run: |
-        git config --local user.email github-actions@users.noreply.github.com"
-        git config --local user.name "GitHub Actions"
         git add .
         git commit -m "Update compose-app.yaml"
     - name: Create tag
