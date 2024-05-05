@@ -26,8 +26,8 @@ jobs:
     - uses: chrisdickinson/setup-yq@latest
     - name:
       run: |
-        yq -y '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}"' compose-app.yaml
-        yq -y '.services.app.image = "lorenzodagostino/cityservice:${{ github.event.inputs.tag }}"' compose-app.yaml
+        yq e -i '.services.grafana.image = "lorenzodagostino/ui-cities:${{ github.event.inputs.tag }}"' compose-app.yaml
+        yq e -i '.services.app.image = "lorenzodagostino/cityservice:${{ github.event.inputs.tag }}"' compose-app.yaml
     - name: Commit changes
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
