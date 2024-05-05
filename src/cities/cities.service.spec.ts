@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CitiesService } from './cities.service';
 import { CitiesRepository } from './cities.repository';
-import { CityScraperService } from './city-scraper.service';
+import { CityScraperService } from './scraper/city-scraper.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { City } from './entities/city.entity';
 import { ConfigService } from '@nestjs/config';

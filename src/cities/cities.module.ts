@@ -4,7 +4,7 @@ import { CitiesController } from './cities.controller';
 import { CitySchema } from './entities/city.entity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CitiesRepository } from './cities.repository';
-import { CityScraperService } from './city-scraper.service';
+import { CityScraperService } from './scraper/city-scraper.service';
 import { ConfigService } from '@nestjs/config';
 
 @Module({

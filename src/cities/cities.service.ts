@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { City } from './entities/city.entity';
 import { FilterQuery } from 'mongoose';
 import { CitiesRepository } from './cities.repository';
-import { CityScraperService } from './city-scraper.service';
+import { CityScraperService } from './scraper/city-scraper.service';
 
 @Injectable()
 export class CitiesService {
@@ -13,7 +13,8 @@ export class CitiesService {
   ) {}
 
   async scrape() {
-    if (CityScraperService.is_running) return { message: 'scraping job already running' };
+    if (CityScraperService.is_running)
+      return { message: 'scraping job already running' };
     this.cityScraper.scrape();
     return { message: 'scraping started. Will run in background' };
   }
