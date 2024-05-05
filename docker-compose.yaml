@@ -65,6 +65,7 @@ services:
     - MONGO_PORT=27017
     - MONGO_USERNAME=root
     - MONGO_PASSWORD=example
+    - LOG_LEVEL=development
     ports:
       - '5000:5000'
     depends_on:
