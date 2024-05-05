@@ -78,7 +78,6 @@ export async function getListElement(
     selector: DropdownIdSelectors,
     page: Page
 ): Promise<ElementHandle<HTMLLIElement>[]> {
-  await page.click(getDropdownButtonIdSelector(selector));
   const list = await page.$$(`${getDropdownElementIdSelector(selector)} li`);
   return list;
 }
