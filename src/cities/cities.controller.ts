@@ -1,4 +1,11 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { FilterQuery } from 'mongoose';
 import { City } from './entities/city.entity';

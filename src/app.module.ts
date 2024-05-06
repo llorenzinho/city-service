@@ -16,7 +16,9 @@ import { CitiesModule } from './cities/cities.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('database.url') ?? `mongodb://${configService.get<string>('database.host')}:${configService.get<string>('database.port')}`,
+        uri:
+          configService.get<string>('database.url') ??
+          `mongodb://${configService.get<string>('database.host')}:${configService.get<string>('database.port')}`,
         auth: {
           username: configService.get<string>('database.username'),
           password: configService.get<string>('database.password'),

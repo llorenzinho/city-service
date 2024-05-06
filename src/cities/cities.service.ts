@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import { HttpException, Injectable, Logger } from '@nestjs/common';
 import { City } from './entities/city.entity';
 import { FilterQuery } from 'mongoose';
 import { CitiesRepository } from './cities.repository';
