@@ -3,6 +3,7 @@ export default () => ({
     port: parseInt(process.env.PORT, 10) || 3000,
   },
   database: {
+    url: process.env.MONGO_CONN_STRING || null,
     host: process.env.MONGO_HOST,
     port: parseInt(process.env.MONGO_PORT, 10) || 27017,
     username: process.env.MONGO_USERNAME,
