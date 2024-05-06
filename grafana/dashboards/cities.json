@@ -200,6 +200,7 @@
         "type": "yesoreyeram-infinity-datasource",
         "uid": "bdklvdha13jswe"
       },
+      "description": "",
       "gridPos": {
         "h": 6,
         "w": 13,
@@ -207,6 +208,13 @@
         "y": 0
       },
       "id": 3,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Play around listening my playlist",
+          "url": "https://open.spotify.com/playlist/2Luws2b5krnXapH9z4XIHz?si=f9c429d0f775413c"
+        }
+      ],
       "options": {
         "code": {
           "language": "plaintext",
@@ -281,6 +289,13 @@
         "y": 3
       },
       "id": 12,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "See Api Docs",
+          "url": "${URL}/docs/api"
+        }
+      ],
       "options": {
         "infinitePan": false,
         "inlineEditing": false,
@@ -906,8 +921,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -1010,8 +1024,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "#EAB839",
@@ -1141,8 +1154,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -1216,8 +1228,8 @@
       {
         "current": {
           "selected": false,
-          "text": "http://app:5000",
-          "value": "http://app:5000"
+          "text": "https://city-service-y3pxoxe5da-ew.a.run.app",
+          "value": "https://city-service-y3pxoxe5da-ew.a.run.app"
         },
         "datasource": {
           "type": "volkovlabs-env-datasource",
