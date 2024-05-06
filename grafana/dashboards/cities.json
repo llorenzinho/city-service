@@ -19,7 +19,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
   "links": [],
   "panels": [
     {
@@ -514,6 +513,10 @@
               {
                 "key": "name",
                 "value": "$name"
+              },
+              {
+                "key": "code",
+                "value": "$code"
               }
             ]
           }
@@ -633,6 +636,10 @@
               {
                 "key": "name",
                 "value": "$name"
+              },
+              {
+                "key": "code",
+                "value": "$code"
               }
             ]
           }
@@ -673,6 +680,10 @@
               {
                 "key": "name",
                 "value": "$name"
+              },
+              {
+                "key": "code",
+                "value": "$code"
               }
             ]
           }
@@ -764,6 +775,10 @@
               {
                 "key": "name",
                 "value": "$name"
+              },
+              {
+                "key": "code",
+                "value": "$code"
               }
             ]
           }
@@ -880,6 +895,10 @@
               {
                 "key": "name",
                 "value": "$name"
+              },
+              {
+                "key": "code",
+                "value": "$code"
               }
             ]
           }
@@ -1228,8 +1247,8 @@
       {
         "current": {
           "selected": false,
-          "text": "https://city-service-y3pxoxe5da-ew.a.run.app",
-          "value": "https://city-service-y3pxoxe5da-ew.a.run.app"
+          "text": "http://app:5000",
+          "value": "http://app:5000"
         },
         "datasource": {
           "type": "volkovlabs-env-datasource",
@@ -1298,6 +1317,27 @@
         "hide": 0,
         "label": "City Name",
         "name": "name",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "description": "City Code",
+        "hide": 0,
+        "label": "City Code",
+        "name": "code",
         "options": [
           {
             "selected": true,
