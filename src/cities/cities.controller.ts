@@ -1,4 +1,11 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { FilterQuery } from 'mongoose';
 import { City } from './entities/city.entity';
@@ -8,6 +15,7 @@ export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @Get('scrape')
+  @HttpCode(HttpStatus.ACCEPTED)
   scrape() {
     return this.citiesService.scrape();
   }
