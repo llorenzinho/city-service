@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   grafana:
-    image: lorenzodagostino/ui-cities:main
+    image: lorenzodagostino/ui-cities:latest
     container_name: grafana
     ports:
       - 3000:3000
@@ -27,7 +27,7 @@ services:
         target: /data/configdb
 
   app:
-    image: lorenzodagostino/cityservice:main
+    image: lorenzodagostino/cityservice:latest
     container_name: app
     environment:
     - PORT=5000
