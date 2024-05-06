@@ -46,7 +46,7 @@ To run the app run the command
 docker compose -f compose-app.yaml up -d
 ```
 
-Now wait for the app to be up & running. This could take some minutes.
+Now wait for the app to be up & running.
 
 After a while you will be able to visit the [dashboard](http://localhost:3000/d/ddkm4hx60jvuod/italy-cities?orgId=1) and see something like:
 
@@ -61,3 +61,15 @@ At the top of the dashboard you can apply filters to the query.
 Swagger doc is available at `docs/api` endpoint. Run the app and visit http://localhost:5000/docs/cities to see it:
 
 ![Swagger UI](./imgs/swagger.png)
+
+## Scraping
+
+The scraping process is powered by [puppeteer](https://pptr.dev/).
+
+The `scrape` operation can be triggered by calling the `cities/scrape` endpoint and it can take few minutes to finish (up to 7 minutes).
+
+To manually trigger the process you can make an http call to the service by running `curl -X GET http://localhost:5000/cities/scrape`, however if you are using the grafana dashboard, it will be automatically triggered by the scrape panel:
+
+![auto trigger panel](./imgs/scraping-auto.png)
+
+Note that if the scraping process is already running, the server answer with status `400` and with a message: `"message":"scraping job already running"`.

@@ -19,6 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -56,9 +57,15 @@
         "y": 0
       },
       "id": 8,
+      "links": [
+        {
+          "title": "Visit GitHub",
+          "url": "https://github.com/llorenzinho/city-service"
+        }
+      ],
       "options": {
         "infinitePan": false,
-        "inlineEditing": true,
+        "inlineEditing": false,
         "panZoom": false,
         "root": {
           "background": {
@@ -104,7 +111,7 @@
               "placement": {
                 "height": 62,
                 "left": -7,
-                "top": 27,
+                "top": 3,
                 "width": 92
               },
               "type": "icon"
@@ -138,8 +145,8 @@
               "name": "Element 3",
               "placement": {
                 "height": 62,
-                "left": 172,
-                "top": 27,
+                "left": 109,
+                "top": 3,
                 "width": 215
               },
               "type": "text"
@@ -166,8 +173,8 @@
               "name": "Element 4",
               "placement": {
                 "height": 58,
-                "left": 474,
-                "top": 27,
+                "left": 348,
+                "top": 5,
                 "width": 55
               },
               "type": "server"
@@ -182,9 +189,10 @@
           },
           "type": "frame"
         },
-        "showAdvancedTypes": true
+        "showAdvancedTypes": false
       },
       "pluginVersion": "10.4.2",
+      "title": "Italy Cities App",
       "type": "canvas"
     },
     {
@@ -205,7 +213,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "This dashboard can be used to retrieve infos about cities scraped from [Agenzia delle Entrate](https://geoportale.cartografia.agenziaentrate.gov.it/age-inspire/srv/ita/catalog.search#/home).\n\nThe dashboard is divided in 2 rows:\n\n- **Use Filters**: Contains data filtered by dashboard variable\n- **All**: Data are not effected by filters\n\nOn the left you can even schedule the scraping task. It will run in background.",
+        "content": "This dashboard can be used to retrieve infos about cities scraped from [Agenzia delle Entrate](https://geoportale.cartografia.agenziaentrate.gov.it/age-inspire/srv/ita/catalog.search#/home).\n\n- **Use Filters**: Contains data filtered by dashboard variable\n- **All**: Data are not effected by filters\n\nScrape city by running `curl ${URL}/cities/scrape`\n\n*Note that scraping job is automatically triggered by the dashboard*",
         "mode": "markdown"
       },
       "pluginVersion": "10.4.2",
@@ -225,13 +233,6 @@
         "y": 3
       },
       "id": 2,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "",
-          "url": "https://github.com/llorenzinho/city-service"
-        }
-      ],
       "options": {
         "code": {
           "language": "plaintext",
@@ -311,28 +312,14 @@
               "border": {
                 "color": {
                   "fixed": "dark-green"
-                },
-                "width": 0
+                }
               },
               "config": {
-                "align": "center",
-                "api": {
-                  "contentType": "application/json",
-                  "data": "{}",
-                  "endpoint": "${URL}/cities/scrape",
-                  "headerParams": [],
-                  "method": "GET",
-                  "queryParams": []
+                "fill": {
+                  "fixed": "#D9D9D9"
                 },
-                "color": {
-                  "fixed": "#F0F4FD"
-                },
-                "size": 14,
-                "style": {
-                  "variant": "success"
-                },
-                "text": {
-                  "fixed": "Scrape",
+                "path": {
+                  "fixed": "img/icons/unicons/asserts.svg",
                   "mode": "fixed"
                 }
               },
@@ -342,12 +329,12 @@
               },
               "name": "Element 1",
               "placement": {
-                "height": 45,
-                "left": 92,
-                "top": 12,
-                "width": 150
+                "height": 100,
+                "left": 7,
+                "top": -12,
+                "width": 235
               },
-              "type": "button"
+              "type": "icon"
             }
           ],
           "name": "Element 1714770422807",
@@ -383,7 +370,7 @@
           }
         }
       ],
-      "title": "Start scraping",
+      "title": "Scraping Auto Triggered",
       "type": "canvas"
     },
     {
@@ -676,7 +663,7 @@
           }
         }
       ],
-      "title": "Panel Title",
+      "title": "Found",
       "type": "stat"
     },
     {
@@ -931,7 +918,7 @@
             "h": 16,
             "w": 19,
             "x": 0,
-            "y": 24
+            "y": 8
           },
           "id": 1,
           "options": {
@@ -1061,9 +1048,9 @@
           },
           "gridPos": {
             "h": 3,
-            "w": 3,
-            "x": 20,
-            "y": 24
+            "w": 4,
+            "x": 19,
+            "y": 8
           },
           "id": 5,
           "options": {
@@ -1136,7 +1123,7 @@
               }
             }
           ],
-          "title": "Panel Title",
+          "title": "Found",
           "type": "stat"
         },
         {
@@ -1164,9 +1151,9 @@
           },
           "gridPos": {
             "h": 3,
-            "w": 3,
-            "x": 20,
-            "y": 27
+            "w": 4,
+            "x": 19,
+            "y": 11
           },
           "id": 10,
           "options": {
@@ -1293,8 +1280,8 @@
       {
         "current": {
           "selected": false,
-          "text": "pianella",
-          "value": "pianella"
+          "text": "",
+          "value": ""
         },
         "hide": 0,
         "label": "City Name",
@@ -1302,11 +1289,11 @@
         "options": [
           {
             "selected": true,
-            "text": "pianella",
-            "value": "pianella"
+            "text": "",
+            "value": ""
           }
         ],
-        "query": "pianella",
+        "query": "",
         "skipUrlSync": false,
         "type": "textbox"
       }
