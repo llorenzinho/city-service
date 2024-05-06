@@ -72,4 +72,4 @@ To manually trigger the process you can make an http call to the service by runn
 
 ![auto trigger panel](./imgs/scraping-auto.png)
 
-Note that if the scraping process is already running, the server answer with status `400` and with a message: `"message":"scraping job already running"`.
+Note that if the scraping process is already running, the server answer with status `208` (Already Reported) and with a message: `"message":"scraping job already running"`.

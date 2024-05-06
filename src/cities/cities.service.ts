@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { City } from './entities/city.entity';
 import { FilterQuery } from 'mongoose';
 import { CitiesRepository } from './cities.repository';
@@ -14,7 +14,7 @@ export class CitiesService {
 
   async scrape() {
     if (CityScraperService.is_running)
-      throw new BadRequestException('scraping job already running');
+      throw new HttpException('scraping job already running', 208);
     this.cityScraper.scrape();
     return { message: 'scraping started. Will run in background' };
   }
