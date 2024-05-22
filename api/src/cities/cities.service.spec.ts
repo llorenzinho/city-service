@@ -1,11 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CitiesService } from './cities.service';
 import { CitiesRepository } from './cities.repository';
-import { CityScraperService } from './scraper/city-scraper.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { City } from './entities/city.entity';
 import { ConfigService } from '@nestjs/config';
 import { citiesStub } from '../../test/stubs/cities.stub';
+import { City } from './entities/city.entity';
+import { ScraperService } from './scraper/scraper.service';
+import { HttpModule } from '@nestjs/axios';
 
 jest.mock('./cities.repository');
 
@@ -15,11 +16,12 @@ describe('CitiesService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [HttpModule],
       providers: [
         { provide: getModelToken(City.name), useValue: jest.fn() },
         CitiesService,
         CitiesRepository,
-        CityScraperService,
+        ScraperService,
         ConfigService,
       ],
     }).compile();

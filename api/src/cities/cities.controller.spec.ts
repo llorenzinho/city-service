@@ -6,12 +6,14 @@ import { ScraperService } from './scraper/scraper.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 import { City } from './entities/city.entity';
+import { HttpModule } from '@nestjs/axios';
 
 describe('CitiesController', () => {
   let controller: CitiesController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [HttpModule],
       controllers: [CitiesController],
       providers: [
         CitiesService,
