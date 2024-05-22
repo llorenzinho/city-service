@@ -10,14 +10,14 @@ RUN apt-get update && apt-get install gnupg wget -y && \
 
 WORKDIR /app
 
-COPY . .
+COPY ./api .
 
 # PROD ENVIRONMENT
 FROM node:22.1-bullseye-slim as build
 
 WORKDIR /app
 
-COPY . .
+COPY ./api .
 
 RUN yarn install --frozen-lockfile
 RUN yarn build
