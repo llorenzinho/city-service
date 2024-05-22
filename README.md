@@ -58,7 +58,7 @@ At the top of the dashboard you can apply filters to the query.
 
 # API DOC
 
-Swagger doc is available at `docs/api` endpoint. Run the app and visit http://localhost:5000/docs/cities to see it:
+Swagger doc is available at `docs/api` endpoint. Run the app and visit http://localhost:5000/docs/api to see it:
 
 ![Swagger UI](./imgs/swagger.png)
 

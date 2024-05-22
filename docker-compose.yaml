@@ -60,7 +60,7 @@ services:
     command: yarn start:dev
     environment:
     - PORT=5000
-    - PUPPETEER_CITY_SCRAPER_ENDPOINT=https://geoportale.cartografia.agenziaentrate.gov.it/age-inspire/srv/ita/catalog.search#/home?pg=
+    - PUPPETEER_CITY_SCRAPER_ENDPOINT=https://geoportale.cartografia.agenziaentrate.gov.it
     - PUPPETEER_SLOW_MO_MS=100
     - PUPPETEER_HEADLESS=True
     - MONGO_HOST=mongo
