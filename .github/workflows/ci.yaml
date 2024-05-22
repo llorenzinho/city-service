@@ -4,15 +4,8 @@ on:
     branches:
     - '*'
     paths:
-        - src/**
-        - test/**
-        - yarn.lock
-        - package.json
-        - tsconfig.json
-        - tsconfig.build.json
-        - .eslintrc.js
-        - .prettierrc
-        - .github/workflows
+        - api/**
+        - .github/workflows/**
   pull_request:
     branches:
     - '*'
@@ -20,6 +13,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./api
     strategy:
       matrix:
         node-version:
@@ -28,7 +24,7 @@ jobs:
 
     steps:
       - name: Copy repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
