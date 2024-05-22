@@ -1,22 +1,51 @@
-import { HttpException, Injectable, Logger } from '@nestjs/common';
-import { City } from './entities/city.entity';
+import { Injectable, Logger } from '@nestjs/common';
 import { FilterQuery } from 'mongoose';
 import { CitiesRepository } from './cities.repository';
-import { CityScraperService } from './scraper/city-scraper.service';
+import { ScraperService } from './scraper/scraper.service';
+import { City } from './entities/city.entity';
 
 @Injectable()
 export class CitiesService {
   private readonly logger = new Logger(CitiesService.name);
   constructor(
     private readonly cityRepo: CitiesRepository,
-    private readonly cityScraper: CityScraperService,
+    private readonly cityScraper: ScraperService,
   ) {}
 
+  private async scrapeRegion(region: string) {
+    const cities = await this.cityScraper.scrape(region);
+    await this.cityRepo.deleteMany({ region });
+    await this.cityRepo.bulkInsert(cities);
+  }
+
   async scrape() {
-    if (CityScraperService.is_running)
-      throw new HttpException('scraping job already running', 208);
-    this.cityScraper.scrape();
-    return { message: 'scraping started. Will run in background' };
+    const regions = await this.cityScraper.getRegions();
+    const errRegions: string[] = [];
+    for (const region of regions) {
+      try {
+        await this.scrapeRegion(region);
+      } catch (error) {
+        this.logger.error(error);
+        errRegions.push(region);
+      }
+    }
+    this.logger.debug(`Scraped ${regions.length - errRegions.length} regions`);
+    this.logger.debug(`Failed scraping ${errRegions.length} regions`);
+    if (errRegions.length > 0) {
+      this.logger.debug(`Failed regions: ${errRegions.join(', ')}`);
+      do {
+        const region = errRegions.shift();
+        // sleep
+        this.logger.debug(`Retrying ${region}`);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+          await this.scrapeRegion(region);
+        } catch (error) {
+          this.logger.error(error);
+          errRegions.push(region);
+        }
+      } while (errRegions.length > 0);
+    }
   }
 
   findAll(): Promise<City[]> {

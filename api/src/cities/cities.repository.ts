@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { City } from './entities/city.entity';
 import { FilterQuery, Model } from 'mongoose';
+import { City } from './entities/city.entity';
 
 @Injectable()
 export class CitiesRepository {
@@ -14,6 +14,12 @@ export class CitiesRepository {
       query[key] = new RegExp(query[key], 'i');
     }
     return query;
+  }
+
+  async deleteMany(query: FilterQuery<City>) {
+    const q = this.queryToRegex(query);
+    const c = await this.cities.deleteMany(q);
+    this.logger.debug(`Deleted ${c.deletedCount} cities`);
   }
 
   findAll(): Promise<City[]> {
@@ -46,5 +52,10 @@ export class CitiesRepository {
       .find(query)
       .collation({ locale: 'en', strength: 2 })
       .exec();
+  }
+
+  async bulkInsert(cities: City[]) {
+    const c = await this.cities.insertMany(cities);
+    this.logger.debug(`Inserted ${c.length} cities`);
   }
 }

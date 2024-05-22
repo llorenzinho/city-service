@@ -16,8 +16,8 @@ export class CitiesController {
 
   @Get('scrape')
   @HttpCode(HttpStatus.ACCEPTED)
-  scrape() {
-    return this.citiesService.scrape();
+  async scrape() {
+    return await this.citiesService.scrape();
   }
 
   @Get()

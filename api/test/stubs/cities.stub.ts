@@ -2,7 +2,6 @@ import { City } from 'src/cities/entities/city.entity';
 
 export const citiesStub = (): City[] => [
   {
-    id: 'F777',
     name: 'MOTTA MONTECORVINO',
     code: 'F777',
     section: null,
@@ -11,7 +10,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'M266',
     name: 'ORDONA',
     code: 'M266',
     section: null,
@@ -20,7 +18,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F538',
     name: 'MONTELEONE DI PUGLIA',
     code: 'F538',
     section: null,
@@ -29,7 +26,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G125',
     name: 'ORSARA DI PUGLIA',
     code: 'G125',
     section: null,
@@ -38,7 +34,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G131',
     name: 'ORTA NOVA',
     code: 'G131',
     section: null,
@@ -47,7 +42,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G312',
     name: 'PANNI',
     code: 'G312',
     section: null,
@@ -56,7 +50,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G487',
     name: 'PESCHICI',
     code: 'G487',
     section: null,
@@ -65,7 +58,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G604',
     name: 'PIETRAMONTECORVINO',
     code: 'G604',
     section: null,
@@ -74,7 +66,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G761',
     name: 'POGGIO IMPERIALE',
     code: 'G761',
     section: null,
@@ -83,7 +74,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H287',
     name: 'RIGNANO GARGANICO',
     code: 'H287',
     section: null,
@@ -92,7 +82,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H467',
     name: "ROCCHETTA SANT'ANTONIO",
     code: 'H467',
     section: null,
@@ -101,7 +90,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H480',
     name: 'RODI GARGANICO',
     code: 'H480',
     section: null,
@@ -110,7 +98,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H568',
     name: 'ROSETO VALFORTORE',
     code: 'H568',
     section: null,
@@ -119,7 +106,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H839',
     name: 'SAN FERDINANDO DI PUGLIA',
     code: 'H839',
     section: null,
@@ -128,7 +114,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H926',
     name: 'SAN GIOVANNI ROTONDO',
     code: 'H926',
     section: null,
@@ -137,7 +122,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H985',
     name: 'SAN MARCO IN LAMIS',
     code: 'H985',
     section: null,
@@ -146,7 +130,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H986',
     name: 'SAN MARCO LA CATOLA',
     code: 'H986',
     section: null,
@@ -155,7 +138,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I054',
     name: 'SAN NICANDRO GARGANICO',
     code: 'I054',
     section: null,
@@ -164,7 +146,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I072',
     name: 'SAN PAOLO DI CIVITATE',
     code: 'I072',
     section: null,
@@ -173,7 +154,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I158',
     name: 'SAN SEVERO',
     code: 'I158',
     section: null,
@@ -182,7 +162,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I193',
     name: "SANT'AGATA DI PUGLIA",
     code: 'I193',
     section: null,
@@ -191,7 +170,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I641',
     name: 'SERRACAPRIOLA',
     code: 'I641',
     section: null,
@@ -200,7 +178,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I962',
     name: 'STORNARA',
     code: 'I962',
     section: null,
@@ -209,7 +186,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'I963',
     name: 'STORNARELLA',
     code: 'I963',
     section: null,
@@ -218,7 +194,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'L273',
     name: 'TORREMAGGIORE',
     code: 'L273',
     section: null,
@@ -227,7 +202,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B915',
     name: 'TRINITAPOLI',
     code: 'B915',
     section: null,
@@ -236,7 +210,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'L447',
     name: 'TROIA',
     code: 'L447',
     section: null,
@@ -245,7 +218,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'L842',
     name: 'VICO DEL GARGANO',
     code: 'L842',
     section: null,
@@ -254,7 +226,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'L858',
     name: 'VIESTE',
     code: 'L858',
     section: null,
@@ -263,7 +234,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'M131',
     name: 'VOLTURARA APPULA',
     code: 'M131',
     section: null,
@@ -272,7 +242,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'M132',
     name: 'VOLTURINO',
     code: 'M132',
     section: null,
@@ -281,7 +250,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A042',
     name: 'ACQUARICA DEL CAPO',
     code: 'A042',
     section: null,
@@ -290,7 +258,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A208',
     name: 'ALLISTE',
     code: 'A208',
     section: null,
@@ -299,7 +266,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A281',
     name: 'ANDRANO',
     code: 'A281',
     section: null,
@@ -308,7 +274,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A184',
     name: 'ALESSANO',
     code: 'A184',
     section: null,
@@ -317,7 +282,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A185',
     name: 'ALEZIO',
     code: 'A185',
     section: null,
@@ -326,7 +290,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A350',
     name: 'ARADEO',
     code: 'A350',
     section: null,
@@ -335,7 +298,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A425',
     name: 'ARNESANO',
     code: 'A425',
     section: null,
@@ -344,7 +306,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'A572',
     name: 'BAGNOLO DEL SALENTO',
     code: 'A572',
     section: null,
@@ -353,7 +314,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B086',
     name: 'BOTRUGNO',
     code: 'B086',
     section: null,
@@ -362,7 +322,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B413',
     name: 'CALIMERA',
     code: 'B413',
     section: null,
@@ -371,7 +330,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B506',
     name: 'CAMPI SALENTINA',
     code: 'B506',
     section: null,
@@ -380,7 +338,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B690',
     name: 'CAPRARICA DI LECCE',
     code: 'B690',
     section: null,
@@ -389,7 +346,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B792',
     name: 'CARMIANO',
     code: 'B792',
     section: null,
@@ -398,7 +354,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B822',
     name: 'CARPIGNANO SALENTINO',
     code: 'B822',
     section: null,
@@ -407,7 +362,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B936',
     name: 'CASARANO',
     code: 'B936',
     section: null,
@@ -416,7 +370,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'B616',
     name: 'CANNOLE',
     code: 'B616',
     section: null,
@@ -425,7 +378,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C334',
     name: 'CASTRI DI LECCE',
     code: 'C334',
     section: null,
@@ -434,7 +386,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C335',
     name: "CASTRIGNANO DE' GRECI",
     code: 'C335',
     section: null,
@@ -443,7 +394,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C336',
     name: 'CASTRIGNANO DEL CAPO',
     code: 'C336',
     section: null,
@@ -452,7 +402,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'M261',
     name: 'CASTRO',
     code: 'M261',
     section: null,
@@ -461,7 +410,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C377',
     name: 'CAVALLINO',
     code: 'C377',
     section: null,
@@ -470,7 +418,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C377-A',
     name: 'CAVALLINO',
     code: 'C377-A',
     section: 'sez.A',
@@ -479,7 +426,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C865',
     name: 'COLLEPASSO',
     code: 'C865',
     section: null,
@@ -488,7 +434,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'C978',
     name: 'COPERTINO',
     code: 'C978',
     section: null,
@@ -497,7 +442,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D006',
     name: "CORIGLIANO D'OTRANTO",
     code: 'D006',
     section: null,
@@ -506,7 +450,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D044',
     name: 'CORSANO',
     code: 'D044',
     section: null,
@@ -515,7 +458,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D223',
     name: 'CURSI',
     code: 'D223',
     section: null,
@@ -524,7 +466,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D237',
     name: 'CUTROFIANO',
     code: 'D237',
     section: null,
@@ -533,7 +474,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D305',
     name: 'DISO',
     code: 'D305',
     section: null,
@@ -542,7 +482,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D851',
     name: 'GAGLIANO DEL CAPO',
     code: 'D851',
     section: null,
@@ -551,7 +490,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D862',
     name: 'GALATINA',
     code: 'D862',
     section: null,
@@ -560,7 +498,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D862-A',
     name: 'GALATINA',
     code: 'D862-A',
     section: 'sez.A',
@@ -569,7 +506,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D863',
     name: 'GALATONE',
     code: 'D863',
     section: null,
@@ -578,7 +514,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'D883',
     name: 'GALLIPOLI',
     code: 'D883',
     section: null,
@@ -587,7 +522,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E053',
     name: 'GIUGGIANELLO',
     code: 'E053',
     section: null,
@@ -596,7 +530,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E061',
     name: 'GIURDIGNANO',
     code: 'E061',
     section: null,
@@ -605,7 +538,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E227',
     name: 'GUAGNANO',
     code: 'E227',
     section: null,
@@ -614,7 +546,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E506',
     name: 'LECCE',
     code: 'E506',
     section: null,
@@ -623,7 +554,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E506-A',
     name: 'LECCE',
     code: 'E506-A',
     section: 'sez.A',
@@ -632,7 +562,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E506-B',
     name: 'LECCE',
     code: 'E506-B',
     section: 'sez.B',
@@ -641,7 +570,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E538',
     name: 'LEQUILE',
     code: 'E538',
     section: null,
@@ -650,7 +578,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E563',
     name: 'LEVERANO',
     code: 'E563',
     section: null,
@@ -659,7 +586,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E629',
     name: 'LIZZANELLO',
     code: 'E629',
     section: null,
@@ -668,7 +594,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E629-A',
     name: 'LIZZANELLO',
     code: 'E629-A',
     section: 'sez.A',
@@ -677,7 +602,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E815',
     name: 'MAGLIE',
     code: 'E815',
     section: null,
@@ -686,7 +610,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E979',
     name: 'MARTANO',
     code: 'E979',
     section: null,
@@ -695,7 +618,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'E984',
     name: 'MARTIGNANO',
     code: 'E984',
     section: null,
@@ -704,7 +626,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F054',
     name: 'MATINO',
     code: 'F054',
     section: null,
@@ -713,7 +634,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F101',
     name: 'MELENDUGNO',
     code: 'F101',
     section: null,
@@ -722,7 +642,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F109',
     name: 'MELISSANO',
     code: 'F109',
     section: null,
@@ -731,7 +650,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F117',
     name: 'MELPIGNANO',
     code: 'F117',
     section: null,
@@ -740,7 +658,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F194',
     name: 'MIGGIANO',
     code: 'F194',
     section: null,
@@ -749,7 +666,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F221',
     name: 'MINERVINO DI LECCE',
     code: 'F221',
     section: null,
@@ -758,7 +674,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F604',
     name: 'MONTERONI DI LECCE',
     code: 'F604',
     section: null,
@@ -767,7 +682,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F623',
     name: 'MONTESANO SALENTINO',
     code: 'F623',
     section: null,
@@ -776,7 +690,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F716',
     name: 'MORCIANO DI LEUCA',
     code: 'F716',
     section: null,
@@ -785,7 +698,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F816',
     name: 'MURO LECCESE',
     code: 'F816',
     section: null,
@@ -794,7 +706,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F842',
     name: "NARDO'",
     code: 'F842',
     section: null,
@@ -803,7 +714,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F881',
     name: 'NEVIANO',
     code: 'F881',
     section: null,
@@ -812,7 +722,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F916',
     name: 'NOCIGLIA',
     code: 'F916',
     section: null,
@@ -821,7 +730,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'F970',
     name: 'NOVOLI',
     code: 'F970',
     section: null,
@@ -830,7 +738,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G136',
     name: 'ORTELLE',
     code: 'G136',
     section: null,
@@ -839,7 +746,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G188',
     name: 'OTRANTO',
     code: 'G188',
     section: null,
@@ -848,7 +754,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G285',
     name: 'PALMARIGGI',
     code: 'G285',
     section: null,
@@ -857,7 +762,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G325',
     name: 'PARABITA',
     code: 'G325',
     section: null,
@@ -866,7 +770,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G378',
     name: "PATU'",
     code: 'G378',
     section: null,
@@ -875,7 +778,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'G751',
     name: 'POGGIARDO',
     code: 'G751',
     section: null,
@@ -884,7 +786,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'M263',
     name: 'PORTO CESAREO',
     code: 'M263',
     section: null,
@@ -893,7 +794,6 @@ export const citiesStub = (): City[] => [
     region: 'PUGLIA',
   },
   {
-    id: 'H047',
     name: 'PRESICCE',
     code: 'H047',
     section: null,

@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CitiesController } from './cities.controller';
 import { CitiesService } from './cities.service';
 import { CitiesRepository } from './cities.repository';
-import { CityScraperService } from './scraper/city-scraper.service';
+import { ScraperService } from './scraper/scraper.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { City } from './entities/city.entity';
 import { ConfigService } from '@nestjs/config';
+import { City } from './entities/city.entity';
 
 describe('CitiesController', () => {
   let controller: CitiesController;
@@ -16,7 +16,7 @@ describe('CitiesController', () => {
       providers: [
         CitiesService,
         CitiesRepository,
-        CityScraperService,
+        ScraperService,
         ConfigService,
         { provide: getModelToken(City.name), useValue: jest.fn() },
       ],
