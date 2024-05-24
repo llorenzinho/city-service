@@ -13,7 +13,7 @@ function App() {
 
   return (
       <Container maxWidth={false}>
-        <Stack direction={'column'} spacing={4}>
+        <Stack direction={'column'} spacing={4} alignItems={'stretch'}>
         <Filters setData={onDataChange}/>
         <TableData data={data}/>
       </Stack>  

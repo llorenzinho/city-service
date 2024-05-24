@@ -11,7 +11,7 @@ function Filters({setData}) {
         if (!searching) {
             return <Button variant="contained" onClick={handleSearch}>Search</Button>
         } else {
-            return <Button variant="contained" disabled><CircularProgress size="1rem" /></Button>
+            return <Button variant="outlined" disabled><CircularProgress size="1rem" /></Button>
         }
     };
 
@@ -28,10 +28,10 @@ function Filters({setData}) {
         }, 500);
     }
     return (
-    <Stack direction="row" spacing={2}>
-        <TextField id="outlined-basic" label="Region" variant="outlined" disabled={searching}/>
-        <TextField id="outlined-basic" label="Province" variant="outlined" disabled={searching}/>
-        <TextField id="outlined-basic" label="City" variant="outlined" disabled={searching}/>
+    <Stack direction="row" spacing={1} alignItems={'stretch'} justifyContent={'space-between'}>
+        <TextField label="Region" variant="outlined" disabled={searching}/>
+        <TextField label="Province" variant="outlined" disabled={searching}/>
+        <TextField label="City" variant="outlined" disabled={searching}/>
         {getButton(searching)}
     </Stack>
     );
