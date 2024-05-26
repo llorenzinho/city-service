@@ -71,7 +71,7 @@ COPY ./ui/yarn.lock yarn.lock
 
 RUN yarn install --frozen-lockfile
 
-FROM nginx:latest
+FROM nginx:latest as uireact
 COPY --from=uidependencies /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
