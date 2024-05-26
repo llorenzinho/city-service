@@ -59,3 +59,19 @@ ENV API_URL=http://app:5000
 
 EXPOSE 3000
 ENTRYPOINT ["/run.sh"]
+
+## React UI
+
+FROM node:22.1 as uidependencies
+
+WORKDIR /app
+
+COPY ./ui/package*.json ./
+COPY ./ui/yarn.lock yarn.lock
+
+RUN yarn install --frozen-lockfile
+
+FROM nginx:latest
+COPY --from=uidependencies /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

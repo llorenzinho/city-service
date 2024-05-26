@@ -1,6 +1,25 @@
 version: '4'
 
 services:
+  ui:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: uidependencies
+    entrypoint: ["yarn", "start"]
+    ports:
+      - 3000:3000
+    volumes:
+      - ./ui/src:/app/src
+      - ./ui/public:/app/public
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      CITY_HOST: app
+      CITY_PORT: 5000
+      CITY_PROTOCOL: http
+
   mongo:
     image: mongo:7.0.9
     restart: always
@@ -56,6 +75,12 @@ services:
       context: .
       dockerfile: Dockerfile
       target: dev
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:5000/healtz"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
     container_name: app
     command: yarn start:dev
     environment:

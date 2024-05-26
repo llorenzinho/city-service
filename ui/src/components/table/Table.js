@@ -1,30 +1,33 @@
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {DataGrid} from '@mui/x-data-grid';
 
-const DataTable = ({ data }) => {
-  console.log(data)
+const columns = [
+    { field: 'region', headerName: 'Region', flex: 1 },
+    { field: 'name', headerName: 'City', flex: 1 },
+    { field: 'code', headerName: 'City Code', flex: 0.4 },
+    { field: 'province', headerName: 'Province', flex: 1 },
+    { field: 'provinceCode', headerName: 'Province Code', flex: 0.4 },
+    { field: 'section', headerName: 'Section', flex: 0.4 },
+  ];
+
+
+export default function DataTable({data}) {
+
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Region</TableCell>
-            <TableCell>Province</TableCell>
-            <TableCell>City</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-         {data.map((row) => (
-          <TableRow>
-            <TableCell>{row.region}</TableCell>
-            <TableCell>{row.province}</TableCell>
-            <TableCell>{row.city}</TableCell>
-          </TableRow>
-         ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div>
+      <DataGrid
+        rowSelection={false}
+        rowSelectionModel={[]}
+        getRowId={(row) => row._id}
+        rows={data}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        pageSizeOptions={[5, 10, 20]}
+      />
+    </div>
   )
 }
-
-export default DataTable
